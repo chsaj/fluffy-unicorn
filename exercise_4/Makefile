@@ -49,7 +49,7 @@ etcd_data:
 
 cluster: confd_config etcd_data download_assets terraform_config
 	# We need the until because there are some issues with VBox and PXE boot
-	until VAGRANT_VAGRANTFILE=vagrantfile_client vagrant up --no-provision --parallel; do echo "Booting up all machines"; done
+	until VAGRANT_VAGRANTFILE=vagrantfile_client vagrant up --no-provision --parallel --provider $(VAGRANT_PROVIDER); do echo "Booting up all machines"; done
 
 destroy_cluster:
 	VAGRANT_VAGRANTFILE=vagrantfile_client vagrant destroy -f || true
